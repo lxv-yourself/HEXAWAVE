@@ -1,0 +1,9 @@
+facility_id,name,facility_type,latitude,longitude,source
+DEMO-FAC-001,Jamnagar Refinery Complex,oil_refinery,22.367,69.856,DEMO_OSM
+DEMO-FAC-002,Vizag Steel Plant (RINL),steel_plant,17.618,83.17,DEMO_OSM
+DEMO-FAC-003,Bokaro Steel City,steel_plant,23.6693,86.1511,DEMO_OSM
+DEMO-FAC-004,Angul Industrial Area,industrial,20.84,85.1,DEMO_OSM
+DEMO-FAC-005,Ankleshwar Petrochemical Zone,petrochemical,21.628,73.0,DEMO_OSM
+DEMO-FAC-006,Korba Thermal Power Complex,thermal_power,22.3595,82.7501,DEMO_OSM
+DEMO-FAC-007,Paradip Port Industrial Area,industrial,20.3167,86.6167,DEMO_OSM
+DEMO-FAC-008,Ramagundam Thermal Plant,thermal_power,18.75,79.45,DEMO_OSM

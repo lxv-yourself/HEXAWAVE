@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIRETRACE AI | Thermal Hotspot Explorer</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css?v=20260911-recovery" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">HEXAWAVE · SIH26162 · DEMO MODE</p>
+          <h1>FIRETRACE <span>AI</span></h1>
+          <p class="subtitle">Explainable satellite-hotspot context for disaster-management decisions.</p>
+        </div>
+        <div class="topbar-actions">
+          <div class="status-pill" id="mode-status"><span></span><span id="mode-label">Checking data mode…</span></div>
+          <button class="refresh-button" id="refresh-button" type="button">Refresh data</button>
+        </div>
+      </header>
+
+      <section class="notice" aria-label="Important limitation" id="mode-notice">
+        <strong>AI-assisted decision support only.</strong> These synthetic points are not live fire alerts or confirmed incidents.
+      </section>
+
+      <section class="error-banner is-hidden" id="error-banner" role="status" aria-live="polite"></section>
+
+      <section class="operational-grid" aria-label="Operational data status">
+        <article class="status-panel panel">
+          <div class="panel-header compact">
+            <div>
+              <p class="section-label">DATA AVAILABILITY</p>
+              <h2>Source status</h2>
+            </div>
+            <span class="last-updated" id="last-updated">Not refreshed</span>
+          </div>
+          <div class="source-statuses" id="source-statuses" aria-live="polite"></div>
+        </article>
+        <article class="status-panel panel">
+          <div class="panel-header compact">
+            <div>
+              <p class="section-label">ANALYSIS STATUS</p>
+              <h2>Decision context</h2>
+            </div>
+          </div>
+          <div class="analysis-status" id="analysis-status" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="alert-centre panel" aria-live="polite">
+        <div class="panel-header alert-header">
+          <div>
+            <p class="section-label">EVENT MONITORING</p>
+            <h2>Potential-event alerts</h2>
+          </div>
+          <div class="alert-actions">
+            <label class="filter-label">
+              Severity
+              <select id="severity-filter" aria-label="Filter alerts by severity">
+                <option value="all">All levels</option>
+                <option value="high">High</option>
+                <option value="medium">Moderate</option>
+                <option value="low">Low</option>
+              </select>
+            </label>
+            <span class="alert-count" id="alert-count">Loading…</span>
+          </div>
+        </div>
+        <p class="alert-intro">Alerts are grouped observations for human review—not confirmed fires or eruptions.</p>
+        <div class="alert-grid" id="alert-list"></div>
+      </section>
+
+      <section class="metrics" aria-label="Dashboard summary">
+        <article class="metric-card"><p>Total hotspots</p><strong id="total-count">—</strong></article>
+        <article class="metric-card industrial"><p>Industrial / persistent</p><strong id="industrial-count">—</strong></article>
+        <article class="metric-card natural"><p>Natural / wildfire</p><strong id="natural-count">—</strong></article>
+        <article class="metric-card uncertain"><p>Other / uncertain</p><strong id="uncertain-count">—</strong></article>
+        <article class="metric-card updated"><p>Last data refresh</p><strong class="updated-value" id="refresh-time">—</strong></article>
+      </section>
+
+      <section class="workspace">
+        <div class="map-panel panel">
+          <div class="panel-header">
+            <div>
+              <p class="section-label">GEOSPATIAL VIEW</p>
+              <h2>Thermal hotspot map</h2>
+            </div>
+            <div class="legend" aria-label="Map legend">
+              <span><i class="industrial-dot"></i> Industrial / persistent</span>
+              <span><i class="natural-dot"></i> Natural / wildfire</span>
+              <span><i class="uncertain-dot"></i> Other / uncertain</span>
+              <span><i class="facility-dot"></i> Facility</span>
+            </div>
+          </div>
+          <div id="map" aria-label="Interactive hotspot map"></div>
+          <p class="map-note" id="map-note">Map tiles need internet. Classification points and details still load from local demo data.</p>
+        </div>
+
+        <aside class="details-panel panel" aria-live="polite">
+          <div class="panel-header compact">
+            <div>
+              <p class="section-label">EXPLAINABLE RESULT</p>
+              <h2>Hotspot details</h2>
+            </div>
+          </div>
+          <div id="details" class="empty-state">
+            <div class="flame">⌖</div>
+            <h3>Select a hotspot</h3>
+            <p>Click a coloured point to see its prediction, supporting features, and evidence.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="list-panel panel">
+        <div class="panel-header list-header">
+          <div>
+            <p class="section-label">OBSERVATIONS</p>
+            <h2>Classified hotspots</h2>
+          </div>
+          <label class="filter-label">
+            Filter
+            <select id="class-filter">
+              <option value="all">All classes</option>
+              <option value="industrial_persistent">Industrial / persistent</option>
+              <option value="natural_wildfire">Natural / wildfire</option>
+              <option value="other_uncertain">Other / uncertain</option>
+            </select>
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Hotspot</th><th>Prediction</th><th>Evidence score</th><th>Persistence</th><th>Facility distance</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="hotspot-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="data-note panel" id="data-note"><p>Loading data-source information…</p></section>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js?v=20260911-recovery"></script>
+  </body>
+</html>
