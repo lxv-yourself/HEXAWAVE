@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FIRETRACE AI
 
 An offline-first Smart India Hackathon MVP for explaining whether satellite thermal hotspots are more consistent with a persistent industrial source, a natural fire, or an uncertain event.
@@ -50,3 +51,6 @@ python -m unittest discover -s tests -v
 ## Why this baseline matters
 
 Raw thermal points do not explain *what* caused the heat. FIRETRACE AI combines location, nearby facility context, and repeated observations to make a cautious, explainable classification. A judge-friendly summary is: **"We enrich a hotspot with spatial and temporal context, then show the evidence behind a probabilistic decision."**
+=======
+# HEXAWAVE
+>>>>>>> 3fdfef82e36d2c0cd82ab3e2172e79061c9f4d33
